@@ -296,9 +296,35 @@ helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --set installCRDs=true
+
+
+Helm installs cert-manager with more options:
+ - Set namespace
+ - Set resource limits
+ - Upgrade easily (helm upgrade)
+✅ Recommended for production
+✅ Easier to manage versions and upgrades
+
+# Using kubectl apply -f cert-manager.yaml
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.0/cert-manager.yaml
+# Wait for all three deployments
+kubectl -n cert-manager rollout status deploy/cert-manager
+kubectl -n cert-manager rollout status deploy/cert-manager-cainjector
+kubectl -n cert-manager rollout status deploy/cert-manager-webhook
+# Verify
+kubectl -n cert-manager get pods
+
+This will install:
+ - cert-manager Deployment
+ - CRDs (CustomResourceDefinitions)
+✅ No Helm needed
+❌ Less flexible (harder to configure things like custom namespaces, resource limits, or specific versions)
 ```
 
 ```yaml
+# Whether you install with Helm or kubectl apply -f, ClusterIssuer is always applied via kubectl apply -f clusterissuer.yaml
+
 # ClusterIssuer — issues certificates from Let's Encrypt
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
