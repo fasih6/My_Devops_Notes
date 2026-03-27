@@ -281,18 +281,13 @@ spec:
 ### Headless Service for StatefulSet
 
 #### 🔹 What makes it different?
-
-#### Normal Service (ClusterIP)
-- Has a virtual IP (ClusterIP)
-- Load-balances traffic across Pods
-- Client talks to the service IP
-
-#### Headless Service
-- No virtual IP
-- No load balancing
-- DNS returns Pod IPs directly
-- Client talks directly to Pods
-
+```
+Normal Service (ClusterIP):               Headless Service: 
+- Has a virtual IP (ClusterIP)            - No virtual IP
+- Load-balances traffic across Pods       - No load balancing
+- Client talks to the service IP          - DNS returns Pod IPs directly
+                                          - Client talks directly to Pods
+```
 StatefulSets need a **headless Service** (clusterIP: None) to give each pod a stable DNS name:
 
 ```yaml
