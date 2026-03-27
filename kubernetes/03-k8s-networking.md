@@ -290,7 +290,7 @@ spec:
 ### TLS with cert-manager
 
 ```bash
-# Install cert-manager
+# Install cert-manager using Helm
 helm repo add jetstack https://charts.jetstack.io
 helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
@@ -304,8 +304,9 @@ Helm installs cert-manager with more options:
  - Upgrade easily (helm upgrade)
 ✅ Recommended for production
 ✅ Easier to manage versions and upgrades
-
-# Using kubectl apply -f cert-manager.yaml
+```
+```
+# OR Install cert-manager Using kubectl apply -f cert-manager.yaml
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.0/cert-manager.yaml
 # Wait for all three deployments
