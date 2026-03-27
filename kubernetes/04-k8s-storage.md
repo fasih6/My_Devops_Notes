@@ -280,13 +280,16 @@ kubectl describe pvc postgres-data
 ```
 ---
 ### x. Static vs Dynamic Provisioning in Kubernetes
+
 #### 🔹 1️⃣ Static Provisioning
-  - PersistentVolumes (PVs) are **created manually by the admin** before pods request them.  
-  - Pod uses a PersistentVolumeClaim (PVC) to bind to an existing PV.
+- PersistentVolumes (PVs) are **created manually by the admin** before pods request them.  
+- Pods use a PersistentVolumeClaim (PVC) to bind to an existing PV.  
+- **Workflow:** Admin creates PV → User creates PVC → Kubernetes binds PVC to PV
 
 #### 🔹 2️⃣ Dynamic Provisioning
-  - PVC requests storage **without an existing PV**.  
-  - Kubernetes automatically creates a PV **using a StorageClass**.
+- PVC requests storage **without an existing PV**.  
+- Kubernetes automatically creates a PV **using a StorageClass**.  
+- **Workflow:** Admin creates StorageClass → User creates PVC → Kubernetes dynamically provisions PV and binds it
 
 ## 5. StorageClass & Dynamic Provisioning
 
