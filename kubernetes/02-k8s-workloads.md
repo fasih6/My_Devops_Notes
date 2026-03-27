@@ -624,6 +624,18 @@ spec:
 ```
 
 ```
+What happens during graceful shutdown?
+
+When a Pod is deleted:
+
+1. Kubernetes sends **SIGTERM** to the container  
+2. Pod is removed from Service (no new traffic)  
+3. App gets time to:
+   1. finish ongoing requests  
+   2. close connections  
+   3. save data  
+4. After the time expires → Kubernetes sends **SIGKILL** (force stop)
+
 Pod termination flow:
 1. Pod marked Terminating
 2. Removed from Service endpoints (traffic stops)
