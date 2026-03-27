@@ -347,6 +347,9 @@ spec:
 
 ## 4. DNS in Kubernetes
 
+DNS (Domain Name System) in Kubernetes is used to **resolve service and pod names to IP addresses**.  
+It allows pods to communicate with each other **without hardcoding IPs**, which are dynamic in Kubernetes.
+
 ### CoreDNS
 
 Kubernetes runs **CoreDNS** as the cluster DNS server. Every pod is configured to use it.
