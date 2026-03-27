@@ -62,6 +62,11 @@ PersistentVolumeClaim ← REQUEST for storage (from a pod)
 
 Volumes are storage attached to a pod. Unlike containers, volumes survive container restarts within the same pod.
 
+| Volume Type     | Description |
+|-----------------|-------------|
+| **emptyDir**    | Temporary storage that exists **only while the pod runs**. Cleared when pod is deleted. Shared among all containers in the pod. |
+| **hostPath**    | Mount a file or directory from the **node's filesystem** into the pod. Useful for accessing host resources, but less portable. |
+
 ### emptyDir — ephemeral shared storage
 
 ```yaml
