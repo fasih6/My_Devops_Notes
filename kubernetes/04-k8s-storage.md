@@ -105,6 +105,10 @@ volumes:
 
 ### configMap and secret volumes
 
+- **ConfigMap** volume: injects **configuration data** as files into a pod.  
+- **Secret** volume: injects **sensitive data** (passwords, tokens) as files into a pod.  
+- Both allow decoupling configuration and secrets from container images.
+
 ```yaml
 volumes:
   - name: config
@@ -121,6 +125,8 @@ volumes:
 ```
 
 ### projected — combine multiple sources
+
+**projected** volumes combine multiple sources into a single volume.  
 
 ```yaml
 volumes:
