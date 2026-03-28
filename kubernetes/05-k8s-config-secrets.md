@@ -327,6 +327,33 @@ secrets/
 
 In production, secrets should live in a **secrets manager** (HashiCorp Vault, AWS Secrets Manager, GCP Secret Manager) — not in Kubernetes Secrets. The External Secrets Operator syncs them automatically.
 
+### 🔹 What is External Secrets Operator (ESO)?
+
+- **External Secrets Operator (ESO)** is a Kubernetes operator that **automatically syncs secrets** from an external secrets manager into Kubernetes.  
+- This allows you to **keep secrets in a secure external store** (AWS Secrets Manager, HashiCorp Vault, GCP Secret Manager) instead of storing them directly in Kubernetes Secrets.
+
+### 🔹 Why use it?
+
+- **Security:** Secrets are **not stored in Kubernetes** in plain YAML or etcd.  
+- **Central management:** All secrets live in one secure place.  
+- **Automatic syncing:** Updates in the external secrets manager are automatically reflected in Kubernetes.  
+- **Auditability:** External managers often provide audit logs of secret access.
+
+### 🔹 How it works (high-level flow)
+
+1. Admin creates a **SecretDefinition** (or ExternalSecret resource) in Kubernetes:
+2. ESO watches the ExternalSecret resource.
+3. It fetches the secret from the external secrets manager (AWS Secrets Manager in this case).
+4. ESO creates/updates a Kubernetes Secret automatically in the specified namespace.
+5. Applications can reference this Kubernetes Secret as usual (envFrom or volumeMount).
+
+### External Secrets Operator Setup & Workflow
+Step 1: Install External Secrets Operator
+Step 2: Create a SecretStore / ClusterSecretStore (This defines how to connect to the external secrets manager)
+Step 3: Create an ExternalSecret (This defines which secret to fetch from the external store and how to map it to a Kubernetes Secret.)
+Step 4: ESO syncs the secret (ESO watches ExternalSecret resources continuously.)
+Step 5: Pod consumes the secret (Applications can use the synced Kubernetes Secret like normal: envFrom: in Deployment/StatefulSet / volumeMounts as files )
+
 ```
 AWS Secrets Manager / Vault / GCP Secret Manager
                 │
