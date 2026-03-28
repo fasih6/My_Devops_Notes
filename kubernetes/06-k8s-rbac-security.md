@@ -307,6 +307,22 @@ curl -sk https://kubernetes.default.svc/api/v1/namespaces/production/pods \
 
 Allows pods to assume AWS IAM roles without access keys:
 
+### 🔹 How it works
+
+1. **Create an IAM role in AWS** with the permissions you want your pod to have.  *Example:* S3 read/write access, DynamoDB access, etc.
+2. **Associate the IAM role with a Kubernetes service account** using an OIDC identity provider (EKS clusters create this automatically).
+3. **Pods use this service account**, which allows them to assume the IAM role.
+4. **Pod automatically gets short-lived AWS credentials** via the role.
+5. **Application inside the pod can call AWS APIs** without any static keys.
+
+### 🔹 Flow Summary
+
+- **Pod** → uses service account  
+- **Kubernetes** → generates a JWT token for the service account  
+- **AWS IAM** → validates the JWT via the OIDC provider  
+- **AWS IAM** → issues temporary credentials for the IAM role  
+- **Pod** → can now call AWS APIs without static keys
+
 ```yaml
 # 1. Annotate ServiceAccount with IAM role ARN
 apiVersion: v1
