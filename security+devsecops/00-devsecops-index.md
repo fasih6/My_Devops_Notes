@@ -19,6 +19,8 @@ DevSecOps is one of the fastest-growing specialisations in the DevOps/Cloud spac
 
 ## Folder Structure
 
+![folder structure](../pics/devsecops_folder_structure.png)
+
 | File | Topic | Key Tools |
 |------|-------|-----------|
 | `01-core-concepts.md` | Shift-left, threat modeling, OWASP, CIA | STRIDE, OWASP Top 10 |
