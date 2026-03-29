@@ -323,6 +323,9 @@ Allows pods to assume AWS IAM roles without access keys:
 - **AWS IAM** → issues temporary credentials for the IAM role  
 - **Pod** → can now call AWS APIs without static keys
 
+OIDC (OpenID Connect) is used to verify the identity of a Kubernetes Service Account so that AWS can trust it.
+👉 Then IRSA uses OIDC to allow pods to assume IAM roles without access keys.
+
 ```yaml
 # 1. Annotate ServiceAccount with IAM role ARN
 apiVersion: v1
