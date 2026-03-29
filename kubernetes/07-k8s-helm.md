@@ -438,6 +438,14 @@ helm upgrade --install my-app ./my-chart \
 
 Hooks let you run Jobs at specific points in the release lifecycle.
 
+#### Purpose of Helm Hooks
+
+Hooks are used for tasks that must happen at the right time, for example:
+- Run database migrations before app starts
+- Create or validate resources before deployment
+- Run cleanup jobs before deleting a release
+- Initialize data after installation
+
 ```yaml
 apiVersion: batch/v1
 kind: Job
